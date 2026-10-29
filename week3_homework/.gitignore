@@ -1,0 +1,7 @@
+.venv/
+.uv-cache/
+__pycache__/
+.ipynb_checkpoints/
+*.parquet
+taxi.db
+taxi.db.wal

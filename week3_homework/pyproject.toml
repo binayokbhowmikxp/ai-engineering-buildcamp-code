@@ -1,0 +1,8 @@
+[project]
+name = "week3-homework"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb>=2.0.0",
+    "pydantic-ai>=2.63.0",
+]
