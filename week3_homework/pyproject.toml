@@ -6,3 +6,9 @@ dependencies = [
     "duckdb>=2.0.0",
     "pydantic-ai>=2.63.0",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.4.1",
+]
