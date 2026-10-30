@@ -1,5 +1,6 @@
 import pytest
 
+from judge import assert_criteria
 from sql_agent import agent
 from utils import collect_tools
 
@@ -36,3 +37,16 @@ async def test_payment_type_tool_calls():
     assert tool_calls[0].name == "get_schema"
     assert any(call.name == "run_sql" for call in tool_calls)
     print("Second tool:", tool_calls[1].name)
+
+
+@pytest.mark.asyncio
+async def test_highest_average_fare_hour():
+    user_prompt = "Which hour of the day has the highest average fare amount?"
+    result = await agent.run(user_prompt)
+    print("SQLResult:", result.output.model_dump_json(indent=2))
+    print("Tool calls:", collect_tools(result.new_messages()))
+    await assert_criteria(result, [
+        "the SQL query correctly calculates average fare by hour of day",
+        "the result identifies a specific hour as having the highest average fare",
+        "the result includes the actual average fare amount",
+    ])
